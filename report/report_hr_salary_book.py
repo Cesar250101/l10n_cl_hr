@@ -90,7 +90,7 @@ and (to_char(date_to,'yyyy')= %s) and ('WORK100' = p.code)
 left join hr_payslip as p on pl.slip_id = p.id
 left join hr_employee as emp on emp.id = p.employee_id
 left join resource_resource as r on r.id = emp.resource_id
-where p.state = 'done' and (pl.code like %s) and (to_char(p.date_to,'mm')=%s)
+where (pl.code like %s) and (to_char(p.date_to,'mm')=%s)
 and (to_char(p.date_to,'yyyy')=%s)
 group by r.name, p.date_to''', (cod_id, mes, ano,))
 
@@ -119,7 +119,7 @@ left join hr_payslip as p on pl.slip_id = p.id
 left join hr_employee as emp on emp.id = p.employee_id
 left join hr_contract as r on r.id = p.contract_id
 left join account_analytic_account as w on w.id = r.analytic_account_id
-where p.state = 'done' and (to_char(p.date_to,'mm')=%s)
+where (to_char(p.date_to,'mm')=%s)
 and (to_char(p.date_to,'yyyy')=%s)
 group by w.name order by name''', (last_month, last_year,))
 
@@ -147,7 +147,7 @@ group by w.name order by name''', (last_month, last_year,))
 left join hr_payslip as p on pl.slip_id = p.id
 left join hr_employee as emp on emp.id = p.employee_id
 left join resource_resource as r on r.id = emp.resource_id
-where p.state = 'done' and p.employee_id = %s and (pl.code like %s)
+where p.employee_id = %s and (pl.code like %s)
 and (to_char(p.date_to,'mm')=%s) and (to_char(p.date_to,'yyyy')=%s)
 group by r.name, p.date_to,emp.id''', (emp_id, cod_id, mes, ano,))
 
@@ -171,7 +171,7 @@ group by r.name, p.date_to,emp.id''', (emp_id, cod_id, mes, ano,))
             '''select emp.id, emp.identification_id, emp.firstname, emp.middle_name, emp.last_name, emp.mothers_name, r.analytic_account_id
 from hr_payslip as p left join hr_employee as emp on emp.id = p.employee_id
 left join hr_contract as r on r.id = p.contract_id
-where p.state = 'done'  and (to_char(p.date_to,'mm')=%s)
+where (to_char(p.date_to,'mm')=%s)
 and (to_char(p.date_to,'yyyy')=%s)
 group by emp.id, emp.name, emp.middle_name, emp.last_name, emp.mothers_name, emp.identification_id, r.analytic_account_id
 order by r.analytic_account_id, last_name''', (last_month, last_year,))
@@ -241,7 +241,7 @@ order by r.analytic_account_id, last_name''', (last_month, last_year,))
             '''select emp.id, emp.identification_id, emp.firstname, emp.middle_name, emp.last_name, emp.mothers_name, r.analytic_account_id
 from hr_payslip as p left join hr_employee as emp on emp.id = p.employee_id
 left join hr_contract as r on r.id = p.contract_id
-where p.state = 'done'  and (to_char(p.date_to,'mm')=%s)
+where (to_char(p.date_to,'mm')=%s)
 and (to_char(p.date_to,'yyyy')=%s)
 group by emp.id, emp.name, emp.middle_name, emp.last_name, emp.mothers_name, emp.identification_id, r.analytic_account_id
 order by r.analytic_account_id, last_name''', (last_month, last_year))
