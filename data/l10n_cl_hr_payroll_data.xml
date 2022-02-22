@@ -46,7 +46,17 @@ else:
     result = result = round((contract.wage / 30) * worked_days.WORK100.number_of_days)</field>
         </record>
 
-
+        <record id="hr_rule_46" model="hr.salary.rule">
+            <field name="name">Descuento 3% Ptmo Solidario</field>
+            <field name="sequence" eval="6"/>
+            <field name="code">PTMOSOLID</field>
+            <field name="category_id" ref="l10n_cl_hr.ODESC"/>
+            <field name="condition_select">python</field>
+            <field name="condition_python">result=contract.tiene_ptmo_solidario</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = round(TRIBU)*(3/100)
+            </field>
+        </record>
 
 
         <record id="hr_rule_2" model="hr.salary.rule">
