@@ -17,6 +17,16 @@ MONTH_LIST= [('1', 'Enero'),
 
 STATES = {'draft': [('readonly', False)]}
 
+
+class Compañia(models.Model):
+    _inherit = 'res.company'
+
+    mutualidad_id = fields.Many2one(comodel_name='hr.mutual', string='MUTUAL')
+    ccaf_id = fields.Many2one(comodel_name='hr.ccaf', string='CCAF')    
+    caja_compensacion = fields.Float('Caja Compensación',help="Caja de Compensacion")
+    mutual_seguridad = fields.Float('Mutualidad', help="Mutual de Seguridad")
+
+
 class hr_indicadores_previsionales(models.Model):
 
     _name = 'hr.indicadores'
@@ -214,6 +224,18 @@ class hr_indicadores_previsionales(models.Model):
     @api.one
     def update_document(self):
         self.update_date = datetime.today()
+        company=self.env.user.company_id
+        if company.ccaf_id:
+            self.ccaf_id=company.ccaf_id.id
+            self.caja_compensacion=company.caja_compensacion
+            self.fonasa=7-company.caja_compensacion
+        if company.mutualidad_id:
+            self.mutualidad_id=company.mutualidad_id.id
+            self.mutual_seguridad=company.mutual_seguridad
+            self.pensiones_ips=10
+            self.tope_imponible_salud=7
+
+
         try:
             html_doc = urlopen('https://www.previred.com/web/previred/indicadores-previsionales').read()
             soup = BeautifulSoup(html_doc, 'html.parser')

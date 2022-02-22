@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- model.name inherit form view -->
+    <record id="l10n_cl_hr.view_company_form" model="ir.ui.view">
+        <field name="name">l10n.cl.hr.view.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page" position="after">            
+                <page name="recursos.humanos" string="Recursos Humanos">
+                  <group>
+                    <group name="rrhh" string="Parámetros Remuneraciones"> 
+                      <field name="mutualidad_id"/>
+                      <field name="mutual_seguridad"/>
+                      <field name="ccaf_id"/>
+                      <field name="caja_compensacion"/>
+                    </group>
+
+                  </group>
+                </page>
+            </xpath>
+
+            
+        </field>
+    </record>
+
+</odoo>
