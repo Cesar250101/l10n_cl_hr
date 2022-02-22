@@ -229,6 +229,8 @@ class hr_indicadores_previsionales(models.Model):
             self.ccaf_id=company.ccaf_id.id
             self.caja_compensacion=company.caja_compensacion
             self.fonasa=7-company.caja_compensacion
+        else:
+            self.fonasa=7
         if company.mutualidad_id:
             self.mutualidad_id=company.mutualidad_id.id
             self.mutual_seguridad=company.mutual_seguridad
