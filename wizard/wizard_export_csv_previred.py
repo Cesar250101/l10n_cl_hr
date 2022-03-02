@@ -424,7 +424,7 @@ class WizardExportCsvPrevired(models.TransientModel):
                              #63 Tasa Cotizacion Ex-Caja Prevision
                              "0",
                              #64 Renta Imponible IPS    Obligatorio si es IPS Obligatorio si es IPS Obligatorio si es INP si no, 0000
-                             self.get_payslip_lines_value_2(payslip,'TOTIM') if payslip.contract_id.isapre_id.codigo=='07' else "0",
+                             int(self.get_payslip_lines_value_2(payslip,'TOTIM')) if payslip.contract_id.isapre_id.codigo=='07' else "0",
                              #65 Cotizacion Obligatoria IPS 
                              "0",
                              #66 Renta Imponible Desahucio
@@ -437,7 +437,7 @@ class WizardExportCsvPrevired(models.TransientModel):
                              "0",
                              #70 Cotizacion Fonasa
                              #"0",
-                             self.get_payslip_lines_value_2(payslip,'FONASA') if payslip.contract_id.isapre_id.codigo=='07' else "0",
+                             int(self.get_payslip_lines_value_2(payslip,'FONASA')) if payslip.contract_id.isapre_id.codigo=='07' else "0",
                              
                              #71 Cotizacion Acc. Trabajo (ISL)
                              int(self.get_payslip_lines_value_2(payslip,'ISL')) if self.get_payslip_lines_value_2(payslip,'ISL') else "0",
