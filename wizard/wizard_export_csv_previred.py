@@ -310,7 +310,7 @@ class WizardExportCsvPrevired(models.TransientModel):
                              #16 Fecha inicio movimiento personal (dia-mes-año)
                              #Si declara mov. personal 1, 3, 4, 5, 6, 7, 8 y 11 Fecha Desde
                              #es obligatoria y debe estar dentro del periodo de remun
-                             payslip.date_from.strftime("%d/%m/%Y") if payslip.movimientos_personal != '0' else '00/00/0000', 
+                             payslip.date_start_mp.strftime("%d/%m/%Y") if payslip.movimientos_personal != '0' else '00/00/0000', 
                              #payslip.date_from if payslip.date_from else '00/00/0000', 
                              #17 Fecha fin movimiento personal (dia-mes-año)
                              payslip.date_to.strftime("%d/%m/%Y") if payslip.movimientos_personal != '0' else '00/00/0000', 

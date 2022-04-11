@@ -50,7 +50,7 @@
             id="hr_salary_books"
             string="Libro de Remuneraciones"
             model="hr.salary.employee.month"
-            report_type="qweb-pdf"
+            report_type="qweb-html"
             file="l10n_cl_hr.report_hrsalarybymonth"
             name="l10n_cl_hr.report_hrsalarybymonth"
             paperformat="l10n_cl_hr.report_paper_format_nuevo"/>

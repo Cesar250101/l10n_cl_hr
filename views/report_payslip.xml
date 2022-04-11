@@ -2,6 +2,13 @@
 <odoo>
 	<template id="hr_payroll.report_payslip">
 	<t t-call="web.html_container">
+      <style>
+        .a {
+            font-size: 10px;
+            line-height: 0.5;
+            }
+
+      </style>
         <t t-foreach="docs" t-as="o">
 			<t t-call="web.external_layout">
             <div class="page small">
@@ -167,7 +174,7 @@
                   </tbody>
                </table>
                <br />
-              <table class="table table-sm" style="border-top: 1px solid black; margin-bottom: 0px;">
+              <table class="table table-sm a" style="border-top: 1px solid black; margin-bottom: 0px;">
                   <thead>
                      <tr>
                         <th align="center"><strong>HABERES</strong></th>

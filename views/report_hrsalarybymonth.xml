@@ -4,14 +4,20 @@
         <t t-call="web.html_container">
         <t t-call="web.internal_layout">
           <t t-foreach="docs" t-as="o">
-            <div class="page">
+            <div class="page">                
                 <div class="text-center">
                     <h2>Libro de Remuneraciones</h2>
                     <p>
                         Fecha <u><span t-field="o.end_date"/></u>
                     </p>
                 </div>
-                <table class="table table-condensed">
+                <style>
+                    .a {
+                        font-size: 10px;
+                        line-height: 0.5;
+                    }
+                </style>
+                <table class="table table-condensed a">
                     <thead>
                         <tr style="border-top: 1px solid black">
                             <th>C.C</th>
@@ -106,7 +112,13 @@
                         To <u><span t-field="o.end_date"/></u>
                     </p>
                 </div>
-                <table class="table table-condensed">
+                <style>
+                    .a {
+                        font-size: 10px;
+                        line-height: 0.5;
+                    }  
+                </style>              
+                <table class="table table-condensed a" >
                     <thead>
                         <tr style="border-top: 1px solid black">
                             <th>C.C</th>
