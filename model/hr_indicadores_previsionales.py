@@ -269,8 +269,10 @@ class hr_indicadores_previsionales(models.Model):
             self.uta = clear_string(letters[1].select("strong")[4].get_text())
 
             # 3 RENTAS TOPES IMPONIBLES UF
+            texto=letters[2].select("strong")[1]
+            texto2=letters[2].select("strong")[3]
             self.tope_imponible_afp = string_divide(clear_string(letters[2].select("strong")[1].get_text()), self.uf, 2)
-            self.tope_imponible_ips = string_divide(clear_string(letters[2].select("strong")[2].get_text()), self.uf, 2)
+            self.tope_imponible_ips = string_divide(clear_string(letters[2].select("strong")[3].get_text()), self.uf, 2)
             self.tope_imponible_seguro_cesantia = string_divide(clear_string(letters[2].select("strong")[3].get_text()),
                                                                 self.uf, 2)
 
