@@ -263,10 +263,10 @@ class hr_indicadores_previsionales(models.Model):
             self.uf = clear_string(letters[0].select("strong")[1].get_text())
 
             # 1 UTM
-            self.utm = clear_string(letters[1].select("strong")[3].get_text())
+            self.utm = clear_string(letters[1].select("strong")[0].get_text())
 
             # 1 UTA
-            self.uta = clear_string(letters[1].select("strong")[4].get_text())
+            self.uta = clear_string(letters[1].select("strong")[1].get_text())
 
             # 3 RENTAS TOPES IMPONIBLES UF
             texto=letters[2].select("strong")[1]
@@ -294,43 +294,43 @@ class hr_indicadores_previsionales(models.Model):
             self.contrato_plazo_indefinido_empleador_otro = clear_string(letters[6].select("strong")[9].get_text())
 
             # 7 ASIGNACIÓN FAMILIAR
-            self.asignacion_familiar_monto_a = clear_string(letters[8].select("strong")[4].get_text())
-            self.asignacion_familiar_monto_b = clear_string(letters[8].select("strong")[6].get_text())
-            self.asignacion_familiar_monto_c = clear_string(letters[8].select("strong")[8].get_text())
+            self.asignacion_familiar_monto_a = clear_string(letters[9].select("strong")[4].get_text())
+            self.asignacion_familiar_monto_b = clear_string(letters[9].select("strong")[6].get_text())
+            self.asignacion_familiar_monto_c = clear_string(letters[9].select("strong")[8].get_text())
 
-            self.asignacion_familiar_primer = clear_string(letters[8].select("strong")[5].get_text())[1:]
-            self.asignacion_familiar_segundo = clear_string(letters[8].select("strong")[7].get_text())[6:]
-            self.asignacion_familiar_tercer = clear_string(letters[8].select("strong")[9].get_text())[6:]
+            self.asignacion_familiar_primer = clear_string(letters[9].select("strong")[5].get_text())[1:]
+            self.asignacion_familiar_segundo = clear_string(letters[9].select("strong")[7].get_text())[6:]
+            self.asignacion_familiar_tercer = clear_string(letters[9].select("strong")[9].get_text())[6:]
 
             # 8 TASA COTIZACIÓN OBLIGATORIO AFP
-            self.tasa_afp_capital = clear_string(letters[7].select("strong")[8].get_text())
-            self.tasa_sis_capital = clear_string(letters[7].select("strong")[9].get_text())
+            self.tasa_afp_capital = clear_string(letters[8].select("strong")[8].get_text())
+            self.tasa_sis_capital = clear_string(letters[8].select("strong")[9].get_text())
 
-            self.tasa_afp_cuprum = clear_string(letters[7].select("strong")[11].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
-            self.tasa_sis_cuprum = clear_string(letters[7].select("strong")[12].get_text())
+            self.tasa_afp_cuprum = clear_string(letters[8].select("strong")[11].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
+            self.tasa_sis_cuprum = clear_string(letters[8].select("strong")[12].get_text())
 
-            self.tasa_afp_habitat = clear_string(letters[7].select("strong")[14].get_text())
-            self.tasa_sis_habitat = clear_string(letters[7].select("strong")[15].get_text())
+            self.tasa_afp_habitat = clear_string(letters[8].select("strong")[14].get_text())
+            self.tasa_sis_habitat = clear_string(letters[8].select("strong")[15].get_text())
 
-            self.tasa_afp_planvital = clear_string(letters[7].select("strong")[17].get_text())
-            self.tasa_sis_planvital = clear_string(letters[7].select("strong")[18].get_text())
+            self.tasa_afp_planvital = clear_string(letters[8].select("strong")[17].get_text())
+            self.tasa_sis_planvital = clear_string(letters[8].select("strong")[18].get_text())
 
-            self.tasa_afp_provida = clear_string(letters[7].select("strong")[20].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
-            self.tasa_sis_provida = clear_string(letters[7].select("strong")[21].get_text())
+            self.tasa_afp_provida = clear_string(letters[8].select("strong")[20].get_text().replace(" ", '').replace("%", '').replace("1ff8", ''))
+            self.tasa_sis_provida = clear_string(letters[8].select("strong")[21].get_text())
 
-            self.tasa_afp_modelo = clear_string(letters[7].select("strong")[23].get_text())
-            self.tasa_sis_modelo = clear_string(letters[7].select("strong")[24].get_text())
+            self.tasa_afp_modelo = clear_string(letters[8].select("strong")[23].get_text())
+            self.tasa_sis_modelo = clear_string(letters[8].select("strong")[24].get_text())
 
-            self.tasa_afp_uno = clear_string(letters[7].select("strong")[23].get_text())
-            self.tasa_sis_uno = clear_string(letters[7].select("strong")[24].get_text())
+            self.tasa_afp_uno = clear_string(letters[8].select("strong")[23].get_text())
+            self.tasa_sis_uno = clear_string(letters[8].select("strong")[24].get_text())
 
-            self.tasa_independiente_capital = clear_string(letters[7].select("strong")[10].get_text())[:5]
-            self.tasa_independiente_cuprum = clear_string(letters[7].select("strong")[13].get_text())
-            self.tasa_independiente_habitat = clear_string(letters[7].select("strong")[16].get_text())
-            self.tasa_independiente_planvital = clear_string(letters[7].select("strong")[19].get_text())
-            self.tasa_independiente_provida = clear_string(letters[7].select("strong")[22].get_text())
-            self.tasa_independiente_modelo = clear_string(letters[7].select("strong")[25].get_text())
-            self.tasa_independiente_uno = clear_string(letters[7].select("strong")[25].get_text())
+            self.tasa_independiente_capital = clear_string(letters[8].select("strong")[10].get_text())[:5]
+            self.tasa_independiente_cuprum = clear_string(letters[8].select("strong")[13].get_text())
+            self.tasa_independiente_habitat = clear_string(letters[8].select("strong")[16].get_text())
+            self.tasa_independiente_planvital = clear_string(letters[8].select("strong")[19].get_text())
+            self.tasa_independiente_provida = clear_string(letters[8].select("strong")[22].get_text())
+            self.tasa_independiente_modelo = clear_string(letters[8].select("strong")[25].get_text())
+            self.tasa_independiente_uno = clear_string(letters[8].select("strong")[25].get_text())
 
         except ValueError:
             return ""
