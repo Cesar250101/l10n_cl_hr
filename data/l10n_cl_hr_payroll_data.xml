@@ -357,30 +357,24 @@ if inputs.HEX50:
     amount = inputs.HEX50.amount
 DEVENGABLE=round(contract.wage+contract.otros_imp+amount)
 
-GRATI=round(DEVENGABLE * 25 / 100 )
-if GRATI > (4.75 * payslip.indicadores_id.sueldo_minimo /12):
-    GRATI = round (4.75 * payslip.indicadores_id.sueldo_minimo / 12)
-else:
-    GRATI = GRATI
-
-
-if TOTIM >=round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf):
-     totimpo =round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf)
-elif TOTIM ==0:
-     totimpo =round(DEVENGABLE+GRATI)
-else:
-     totimpo = TOTIM
-
 if contract.pension is True:
      result = 0
 elif contract.type_id.name == 'Sueldo Empresarial':
      result = 0
-elif contract.type_id.name == 'Plazo Indefinido':
-     result = round(totimpo*payslip.indicadores_id.contrato_plazo_indefinido_empleador/100)
-elif contract.type_id.name == 'Indefinido 11 anos o mas':
-     result = round(TOTIM*payslip.indicadores_id.contrato_plazo_indefinido_empleador_otro/100)
 elif contract.type_id.name == 'Plazo Fijo':
-     result = round(totimpo*payslip.indicadores_id.contrato_plazo_fijo_empleador/100)
+     result = 0
+elif TOTIM >=round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf):
+     result =round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf*payslip.indicadores_id.contrato_plazo_indefinido_empleador/100)
+elif contract.type_id.name == 'Plazo Indefinido':
+     if  TOTIM ==0:
+          result = round(DEVENGABLE*payslip.indicadores_id.contrato_plazo_indefinido_empleador/100)
+     else:
+          result = round(TOTIM*payslip.indicadores_id.contrato_plazo_indefinido_empleador/100)
+elif contract.type_id.name == 'Indefinido 11 anos o mas':
+     if  TOTIM ==0:
+         result = round(DEVENGABLE*payslip.indicadores_id.contrato_plazo_indefinido_trabajador_otro/100)
+     else:
+         result = round(TOTIM*payslip.indicadores_id.contrato_plazo_indefinido_trabajador_otro/100)
 else:
      result = 0</field>
         </record>
