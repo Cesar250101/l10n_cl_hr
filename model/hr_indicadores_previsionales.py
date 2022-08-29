@@ -266,78 +266,75 @@ class hr_indicadores_previsionales(models.Model):
         data = requests.request("GET", url, headers=headers, data=payload)
         dict = json.loads(data.text)
         print(float(dict['UFValPeriodo'].replace(",",".")))
-        try:
-            # UF
-            self.uf =float(dict['UFValPeriodo'].replace(",",".")) 
+        #try:
+        # UF
+        self.uf =float(dict['UFValPeriodo'].replace(",",".")) 
 
-            # 1 UTM
-            self.utm = int(dict['UTMVal'].replace(",00",""))
+        # 1 UTM
+        self.utm = int(dict['UTMVal'].replace(",00",""))
 
-            # 1 UTA
-            self.uta = int(dict['UTAVal'].replace(",00",""))
+        # 1 UTA
+        self.uta = int(dict['UTAVal'].replace(",00",""))
 
-            # 3 RENTAS TOPES IMPONIBLES UF
-            self.tope_imponible_afp = int(dict['RTIAfpUF'].replace(",","."))
-            self.tope_imponible_ips = int(dict['RTIIpsUF'].replace(",","."))
-            self.tope_imponible_seguro_cesantia = int(dict['RTISegCesUF'].replace(",","."))
+        # 3 RENTAS TOPES IMPONIBLES UF
+        self.tope_imponible_afp = int(dict['RTIAfpUF'].replace(",","."))
+        self.tope_imponible_ips = int(dict['RTIIpsUF'].replace(",","."))
+        self.tope_imponible_seguro_cesantia = int(dict['RTISegCesUF'].replace(",","."))
 
-            # 4 RENTAS TOPES IMPONIBLES
-            self.sueldo_minimo = dict['RMITrabDepeInd'].replace(",",".")
-            self.sueldo_minimo_otro = dict['RMIMen18May65'].replace(",",".")
+        # 4 RENTAS TOPES IMPONIBLES
+        self.sueldo_minimo = dict['RMITrabDepeInd'].replace(",",".")
+        self.sueldo_minimo_otro = dict['RMIMen18May65'].replace(",",".")
 
-            # Ahorro Previsional Voluntario
-            self.tope_mensual_apv = int(dict['APVTopeMensUF'].replace(",","."))
-            self.tope_anual_apv = int(dict['APVTopeAnuUF'].replace(",","."))
+        # Ahorro Previsional Voluntario
+        self.tope_mensual_apv = int(dict['APVTopeMensUF'].replace(",","."))
+        self.tope_anual_apv = int(dict['APVTopeAnuUF'].replace(",","."))
 
-            # 5 DEPÓSITO CONVENIDO
-            self.deposito_convenido = int(dict['DepConvenidoUF'].replace(",","."))
+        # 5 DEPÓSITO CONVENIDO
+        self.deposito_convenido = int(dict['DepConvenidoUF'].replace(",","."))
 
-            # 6 RENTAS TOPES IMPONIBLES
-            self.contrato_plazo_indefinido_empleador = dict['AFCCpiEmpleador'].replace(",",".")
-            self.contrato_plazo_indefinido_trabajador = dict['AFCCpiTrabajador'].replace(",",".")
-            self.contrato_plazo_fijo_empleador = dict['AFCCpfEmpleador'].replace(",",".")
-            self.contrato_plazo_indefinido_empleador_otro = dict['AFCCpi11Empleador'].replace(",",".")
+        # 6 RENTAS TOPES IMPONIBLES
+        self.contrato_plazo_indefinido_empleador = dict['AFCCpiEmpleador'].replace(",",".")
+        self.contrato_plazo_indefinido_trabajador = dict['AFCCpiTrabajador'].replace(",",".")
+        self.contrato_plazo_fijo_empleador = dict['AFCCpfEmpleador'].replace(",",".")
+        self.contrato_plazo_indefinido_empleador_otro = dict['AFCCpi11Empleador'].replace(",",".")
 
-            try:
-                # 7 ASIGNACIÓN FAMILIAR
-                self.asignacion_familiar_monto_a = int(dict['AFamTramoAMonto'].replace(",","."))
-                self.asignacion_familiar_monto_b = int(dict['AFamTramoBMonto'].replace(",","."))
-                self.asignacion_familiar_monto_c = int(dict['AFamTramoCMonto'].replace(",","."))
+        # 7 ASIGNACIÓN FAMILIAR
+        self.asignacion_familiar_monto_a = int(dict['AFamTramoAMonto'].replace(",","."))
+        self.asignacion_familiar_monto_b = int(dict['AFamTramoBMonto'].replace(",","."))
+        self.asignacion_familiar_monto_c = int(dict['AFamTramoCMonto'].replace(",","."))
 
-                self.asignacion_familiar_primer = int(dict['AFamTramoAHasta'].replace(",","."))
-                self.asignacion_familiar_segundo = int(dict['AFamTramoBHasta'].replace(",","."))
-                self.asignacion_familiar_tercer = int(dict['AFamTramoCHasta'].replace(",","."))
-            except:
-                pass
-            # 8 TASA COTIZACIÓN OBLIGATORIO AFP
-            self.tasa_afp_capital = dict['AFPCapitalTasaDep'].replace(",",".")
-            self.tasa_sis_capital = dict['AFPCapitalTasaSIS'].replace(",",".")
+        self.asignacion_familiar_primer = int(dict['AFamTramoAHasta'].replace(",","."))
+        self.asignacion_familiar_segundo = int(dict['AFamTramoBHasta'].replace(",","."))
+        self.asignacion_familiar_tercer = int(dict['AFamTramoCHasta'].replace(",","."))
+        # 8 TASA COTIZACIÓN OBLIGATORIO AFP
+        self.tasa_afp_capital = dict['AFPCapitalTasaDep'].replace(",",".")
+        self.tasa_sis_capital = dict['AFPCapitalTasaSIS'].replace(",",".")
 
-            self.tasa_afp_cuprum = dict['AFPCuprumTasaDep'].replace(",",".")
-            self.tasa_sis_cuprum = dict['AFPCuprumTasaSIS'].replace(",",".")
+        self.tasa_afp_cuprum = dict['AFPCuprumTasaDep'].replace(",",".")
+        self.tasa_sis_cuprum = dict['AFPCuprumTasaSIS'].replace(",",".")
 
-            self.tasa_afp_habitat = dict['AFPHabitatTasaDep'].replace(",",".")
-            self.tasa_sis_habitat = dict['AFPHabitatTasaSIS'].replace(",",".")
+        self.tasa_afp_habitat = dict['AFPHabitatTasaDep'].replace(",",".")
+        self.tasa_sis_habitat = dict['AFPHabitatTasaSIS'].replace(",",".")
 
-            self.tasa_afp_planvital = dict['AFPPlanVitalTasaDep'].replace(",",".")
-            self.tasa_sis_planvital = dict['AFPPlanVitalTasaSIS'].replace(",",".")
+        self.tasa_afp_planvital = dict['AFPPlanVitalTasaDep'].replace(",",".")
+        self.tasa_sis_planvital = dict['AFPPlanVitalTasaSIS'].replace(",",".")
 
-            self.tasa_afp_provida = dict['AFPProVidaTasaDep'].replace(",",".")
-            self.tasa_sis_provida = dict['AFPProVidaTasaSIS'].replace(",",".")
+        self.tasa_afp_provida = dict['AFPProVidaTasaDep'].replace(",",".")
+        self.tasa_sis_provida = dict['AFPProVidaTasaSIS'].replace(",",".")
 
-            self.tasa_afp_modelo = dict['AFPModeloTasaDep'].replace(",",".")
-            self.tasa_sis_modelo = dict['AFPModeloTasaSIS'].replace(",",".")
+        self.tasa_afp_modelo = dict['AFPModeloTasaDep'].replace(",",".")
+        self.tasa_sis_modelo = dict['AFPModeloTasaSIS'].replace(",",".")
 
-            self.tasa_afp_uno = dict['AFPUnoTasaDep'].replace(",",".")
-            self.tasa_sis_uno = dict['AFPUnoTasaSIS'].replace(",",".")
+        self.tasa_afp_uno = dict['AFPUnoTasaDep'].replace(",",".")
+        self.tasa_sis_uno = dict['AFPUnoTasaSIS'].replace(",",".")
 
-            self.tasa_independiente_capital = dict['AFPCapitalTasaInd'].replace(",",".")
-            self.tasa_independiente_cuprum = dict['AFPCuprumTasaInd'].replace(",",".")
-            self.tasa_independiente_habitat = dict['AFPHabitatTasaInd'].replace(",",".")
-            self.tasa_independiente_planvital = dict['AFPPlanVitalTasaInd'].replace(",",".")
-            self.tasa_independiente_provida = dict['AFPProVidaTasaInd'].replace(",",".")
-            self.tasa_independiente_modelo = dict['AFPModeloTasaInd'].replace(",",".")
-            self.tasa_independiente_uno = dict['AFPUnoTasaInd'].replace(",",".")
+        self.tasa_independiente_capital = dict['AFPCapitalTasaInd'].replace(",",".")
+        self.tasa_independiente_cuprum = dict['AFPCuprumTasaInd'].replace(",",".")
+        self.tasa_independiente_habitat = dict['AFPHabitatTasaInd'].replace(",",".")
+        self.tasa_independiente_planvital = dict['AFPPlanVitalTasaInd'].replace(",",".")
+        self.tasa_independiente_provida = dict['AFPProVidaTasaInd'].replace(",",".")
+        self.tasa_independiente_modelo = dict['AFPModeloTasaInd'].replace(",",".")
+        self.tasa_independiente_uno = dict['AFPUnoTasaInd'].replace(",",".")
 
-        except ValueError:
-            return ""
+        #except ValueError:
+        #    return ""
