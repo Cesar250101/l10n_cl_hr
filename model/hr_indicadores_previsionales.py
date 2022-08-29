@@ -263,10 +263,10 @@ class hr_indicadores_previsionales(models.Model):
             self.uf = clear_string(letters[0].select("strong")[1].get_text())
 
             # 1 UTM
-            self.utm = clear_string(letters[1].select("strong")[0].get_text())
+            self.utm = clear_string(letters[1].select("strong")[3].get_text())
 
             # 1 UTA
-            self.uta = clear_string(letters[1].select("strong")[1].get_text())
+            self.uta = clear_string(letters[1].select("strong")[4].get_text())
 
             # 3 RENTAS TOPES IMPONIBLES UF
             texto=letters[2].select("strong")[1]
@@ -293,15 +293,17 @@ class hr_indicadores_previsionales(models.Model):
             self.contrato_plazo_fijo_empleador = clear_string(letters[6].select("strong")[7].get_text())
             self.contrato_plazo_indefinido_empleador_otro = clear_string(letters[6].select("strong")[9].get_text())
 
-            # 7 ASIGNACIÓN FAMILIAR
-            self.asignacion_familiar_monto_a = clear_string(letters[9].select("strong")[4].get_text())
-            self.asignacion_familiar_monto_b = clear_string(letters[9].select("strong")[6].get_text())
-            self.asignacion_familiar_monto_c = clear_string(letters[9].select("strong")[8].get_text())
+            try:
+                # 7 ASIGNACIÓN FAMILIAR
+                self.asignacion_familiar_monto_a = clear_string(letters[9].select("td")[6].get_text())
+                self.asignacion_familiar_monto_b = clear_string(letters[9].select("td")[8].get_text())
+                self.asignacion_familiar_monto_c = clear_string(letters[9].select("td")[10].get_text())
 
-            self.asignacion_familiar_primer = clear_string(letters[9].select("strong")[5].get_text())[1:]
-            self.asignacion_familiar_segundo = clear_string(letters[9].select("strong")[7].get_text())[6:]
-            self.asignacion_familiar_tercer = clear_string(letters[9].select("strong")[9].get_text())[6:]
-
+                self.asignacion_familiar_primer = clear_string(letters[9].select("td")[7].get_text())[1:]
+                self.asignacion_familiar_segundo = clear_string(letters[9].select("td")[9].get_text())[6:]
+                self.asignacion_familiar_tercer = clear_string(letters[9].select("td")[11].get_text())[6:]
+            except:
+                pass
             # 8 TASA COTIZACIÓN OBLIGATORIO AFP
             self.tasa_afp_capital = clear_string(letters[8].select("strong")[8].get_text())
             self.tasa_sis_capital = clear_string(letters[8].select("strong")[9].get_text())
