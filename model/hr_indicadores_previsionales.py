@@ -221,12 +221,39 @@ class hr_indicadores_previsionales(models.Model):
         if s == '12':
             return 'Diciembre'
 
+    def find_month_month(self, s):
+        if s == '1':
+            return '01'
+        if s == '2':
+            return '02'
+        if s == '3':
+            return '03'
+        if s == '4':
+            return '04'
+        if s == '5':
+            return '05'
+        if s == '6':
+            return '06'
+        if s == '7':
+            return '07'
+        if s == '8':
+            return '08'
+        if s == '9':
+            return '09'
+        if s == '10':
+            return '10'
+        if s == '11':
+            return '11'
+        if s == '12':
+            return '12'
 
 
     @api.one
     def update_document(self):
         self.update_date = datetime.today()
         company=self.env.user.company_id
+        mes=self.find_month_month(self.month)
+        periodo=mes+str(self.year)
         if company.ccaf_id:
             self.ccaf_id=company.ccaf_id.id
             self.caja_compensacion=company.caja_compensacion
@@ -259,7 +286,7 @@ class hr_indicadores_previsionales(models.Model):
         def string_divide(cad, cad2, rounded):
             return round(float(cad) / float(cad2), rounded)
 
-        url = "https://api.gael.cloud/general/public/previred/082022"
+        url = "https://api.gael.cloud/general/public/previred/"+periodo
         payload={}
         headers = {}
         dict={}
