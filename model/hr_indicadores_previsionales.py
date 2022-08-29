@@ -277,9 +277,9 @@ class hr_indicadores_previsionales(models.Model):
         self.uta = int(dict['UTAVal'].replace(",00",""))
 
         # 3 RENTAS TOPES IMPONIBLES UF
-        self.tope_imponible_afp = int(dict['RTIAfpUF'])
-        self.tope_imponible_ips = int(dict['RTIIpsUF'])
-        self.tope_imponible_seguro_cesantia = int(dict['RTISegCesUF'])
+        self.tope_imponible_afp = dict['RTIAfpUF'].replace(",",".")
+        self.tope_imponible_ips = dict['RTIIpsUF'].replace(",",".")
+        self.tope_imponible_seguro_cesantia = dict['RTISegCesUF'].replace(",",".")
 
         # 4 RENTAS TOPES IMPONIBLES
         self.sueldo_minimo = dict['RMITrabDepeInd'].replace(",",".")
