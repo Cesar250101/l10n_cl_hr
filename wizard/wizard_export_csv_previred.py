@@ -195,6 +195,14 @@ class WizardExportCsvPrevired(models.TransientModel):
             return 0
         elif TOTIM >=round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf):
             return int(round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf))
+        elif TOTIM ==0:
+            #amount = payslip.line_ids.HEX50.amount
+            amount=self.get_payslip_lines_value_2(payslip,'HEX50')
+            DEVENGABLE=round(payslip.contract_id.wage+payslip.contract_id.otros_imp+amount)
+            if DEVENGABLE>round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf):
+                return int(round(payslip.indicadores_id.tope_imponible_seguro_cesantia*payslip.indicadores_id.uf))
+            else:
+                result = round(DEVENGABLE)
         else:
             return int(round(TOTIM))
 
@@ -516,7 +524,7 @@ class WizardExportCsvPrevired(models.TransientModel):
                              int(self.get_payslip_lines_value_2(payslip,'MUT')) if self.get_payslip_lines_value_2(payslip,'MUT') else "0",
                              #99 Codigo de Sucursal (Uso Futuro)
                              "0",
-                             #10- Datos Administradora de Seguro de Cesantia
+                             #100- Datos Administradora de Seguro de Cesantia
                              self.get_imponible_seguro_cesantia(payslip and payslip[0] or False, self.get_payslip_lines_value_2(payslip,'TOTIM') , self.get_payslip_lines_value_2(payslip,'IMPLIC')),
                              #101 Aporte Trabajador Seguro Cesantia
                              int(self.get_payslip_lines_value_2(payslip,'SECE')) if self.get_payslip_lines_value_2(payslip,'SECE') else "0",
