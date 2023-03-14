@@ -25,8 +25,18 @@ class Compañia(models.Model):
 
     mutualidad_id = fields.Many2one(comodel_name='hr.mutual', string='MUTUAL')
     ccaf_id = fields.Many2one(comodel_name='hr.ccaf', string='CCAF')    
-    caja_compensacion = fields.Float('Caja Compensación',help="Caja de Compensacion")
-    mutual_seguridad = fields.Float('Mutualidad', help="Mutual de Seguridad")
+    caja_compensacion = fields.Float(string='Caja Compensación',help="Caja de Compensacion")
+    mutual_seguridad = fields.Float(string='Mutualidad', help="Mutual de Seguridad")
+    zona_extrema = fields.Boolean(string='Zona Extrema', help='Indica si la empresa esta ubicada en zona extrema')
+    sueldo_grado_1A = fields.Integer(string='Sueldo grado 1-A')
+    porc_zona = fields.Float(string='% Tope Zona')
+    tope_zona = fields.Integer(compute='_compute_tope_zona', string='Tope Zona')
+    
+    @api.depends('sueldo_grado_1A','porc_zona')
+    def _compute_tope_zona(self):
+        if self.sueldo_grado_1A and self.porc_zona:
+            self.tope_zona=round(self.sueldo_grado_1A*(self.porc_zona/100),0) 
+            print(round(self.sueldo_grado_1A*(self.porc_zona/100),0) )            
 
 
 class hr_indicadores_previsionales(models.Model):

@@ -16,6 +16,13 @@
                       <field name="ccaf_id"/>
                       <field name="caja_compensacion"/>
                     </group>
+                    <group name="zona_extrema" string="Zona Extrema"> 
+                      <field name="zona_extrema"/>
+                      <field name="sueldo_grado_1A" attrs="{'invisible': [('zona_extrema', '=', False)]}"/>
+                      <field name="porc_zona" attrs="{'invisible': [('zona_extrema', '=', False)]}"/>
+                      <field name="tope_zona" attrs="{'invisible': [('zona_extrema', '=', False)]}"/>
+                      
+                    </group>
 
                   </group>
                 </page>
