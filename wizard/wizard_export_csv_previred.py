@@ -176,14 +176,21 @@ class WizardExportCsvPrevired(models.TransientModel):
 
     @api.model
     def get_imponible_mutual(self, payslip, TOTIM):
-        if payslip.contract_id.mutual_seguridad is False:
-            return 0
-        elif payslip.contract_id.type_id.name == 'Sueldo Empresarial':
-            return 0 
-        elif TOTIM >=round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf):
-            return round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf)
+        if payslip.indicadores_id.mutual_seguridad_bool:
+            if payslip.contract_id.mutual_seguridad is False:
+                return 0
+            elif payslip.contract_id.type_id.name == 'Sueldo Empresarial':
+                return 0 
+            elif TOTIM >=round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf):
+                return round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf)
+            else:
+                return round(TOTIM)    
         else:
-            return round(TOTIM)    
+            if TOTIM >=round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf):
+                return round(payslip.indicadores_id.tope_imponible_afp*payslip.indicadores_id.uf)
+            else:
+                return round(TOTIM)    
+
 
     @api.model
     def get_imponible_seguro_cesantia(self, payslip, TOTIM, LIC):
