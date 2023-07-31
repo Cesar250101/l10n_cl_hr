@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>						
 <odoo>						
-    <data noupdate="0">      
+    <data noupdate="1">      
         <!-- Account Journal -->
-        <!-- <record id="payroll_journal" model="account.journal">
+        <record id="payroll_journal" model="account.journal">
             <field name="name">Remuneraciones</field>
             <field name="code">REMU</field>
             <field name="type">general</field>
             <field name="show_on_dashboard" eval="True"/>
-        </record> -->
+        </record>
         
     </data>						
 </odoo>						
