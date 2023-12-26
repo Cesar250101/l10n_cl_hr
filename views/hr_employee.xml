@@ -19,23 +19,25 @@
             </xpath>
 
             <xpath expr="//field[@name='name']/.." position="after">
+            <!-- <label for="firstname" class="oe_edit_only"/> -->
                 <label for="firstname" class="oe_edit_only"/>
-                    <h1>
+                    <span>
                         <field name="firstname" required="1"/>
-                    </h1>
+                    </span>
                 <label for="middle_name" class="oe_edit_only"/>
-                	<h1>
+                	<span style="padding:5px">
                     	<field name="middle_name"/>
-                 	</h1>
+                 	</span>
                 <label for="last_name" class="oe_edit_only"/>
-                	<h1>
+                	<span style="padding:5px">
                     	<field name="last_name" required="1"/>
-                 	</h1>
+                 	</span>
                 <label for="mothers_name" class="oe_edit_only"/>
-                	<h1>
+                	<span style="padding:5px">
                     	<field name="mothers_name"/>
-                 	</h1>
+                 	</span>
             </xpath>
+            
             <xpath expr="//field[@name='resource_calendar_id']" position="replace">
                 <field name="resource_calendar_id" select="hr_resource_monthly_cl"/>
             </xpath>
